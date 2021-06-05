@@ -28,7 +28,7 @@ public class SavingSheets {
     @Column(name = "END_DATE", nullable = false)
     private LocalDateTime endDate;
 
-    @Column(name = "SAVING_SHEETS_NAME", nullable = false)
+    @Column(name = "SAVING_SHEETS_NAME", nullable = false, length = 30)
     private String savingSheetsName;
 
     @Column(name = "ACTIVE", nullable = false)

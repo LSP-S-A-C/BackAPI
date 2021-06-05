@@ -27,7 +27,7 @@ public class CashFlow {
     @Column(name = "AMOUNT", nullable = false)
     private BigDecimal amount;
 
-    @Column(name = "NAME", nullable = false)
+    @Column(name = "NAME", nullable = false, length = 30)
     private String cashFlowName;
 
     @Column(name = "RECURRENT", nullable = false)
