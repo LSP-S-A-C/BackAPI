@@ -17,7 +17,10 @@ public class SavingSheets {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
+
+    @Column(name = "ID_SAVING_PLAN")
+    private String idSavingPlan;
 
     @Column(name = "PERIOD")
     private Integer period;
