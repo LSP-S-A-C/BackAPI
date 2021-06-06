@@ -6,6 +6,7 @@ import com.financeservice.apiadminfinance.exceptions.GeneralServiceException;
 import com.financeservice.apiadminfinance.exceptions.NoDataFoundException;
 import com.financeservice.apiadminfinance.exceptions.ValidateServiceException;
 import com.financeservice.apiadminfinance.repository.CashFlowRepository;
+import com.financeservice.apiadminfinance.service.CashFlowService;
 import com.financeservice.apiadminfinance.validators.CashFlowValidator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class CashFlowServiceImpl {
+public class CashFlowServiceImpl implements CashFlowService {
 
     @Autowired
     private CashFlowRepository cashFlowRepository;

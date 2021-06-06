@@ -5,6 +5,7 @@ import com.financeservice.apiadminfinance.exceptions.GeneralServiceException;
 import com.financeservice.apiadminfinance.exceptions.NoDataFoundException;
 import com.financeservice.apiadminfinance.exceptions.ValidateServiceException;
 import com.financeservice.apiadminfinance.repository.CategoryRepository;
+import com.financeservice.apiadminfinance.service.CategoryService;
 import com.financeservice.apiadminfinance.validators.CategoryValidator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class CategoryServiceImpl {
+public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     private CategoryRepository categoryRepository;
