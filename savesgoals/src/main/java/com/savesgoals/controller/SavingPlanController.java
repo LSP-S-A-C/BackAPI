@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+@Api
 @RestController
 @RequestMapping("/savingplan")
 public class SavingPlanController {
@@ -32,6 +35,7 @@ public class SavingPlanController {
     @Autowired
     private SavingPlanDtotoEntityConverter converter2;
 
+    @ApiOperation(value = "Lee todas los planes de ahorro existentes")
     @GetMapping
     public ResponseEntity<WrapperResponse<List<SavingPlanDTO>>> findAll(
         @RequestParam(name = "pageNumber", required = false, defaultValue = "0") int pageNumber, 
@@ -40,28 +44,29 @@ public class SavingPlanController {
         List<SavingPlan> savingsPlans = savingPlanService.list(page);
         return new WrapperResponse<>(true, "success", converter1.convertEntityToDto(savingsPlans)).createResponse();
     }
-    
 
+    @ApiOperation(value = "Lee un unico plan de ahorro basado en su id")
     @GetMapping("/{id}")
     public ResponseEntity<WrapperResponse<SavingPlanDTO>> findById(@PathVariable(name="id") Long id){
         SavingPlan savingsPlan = savingPlanService.listById(id).get();
         return new WrapperResponse<>(true, "success", converter1.convertEntityToDto(savingsPlan)).createResponse();
     }
 
-
-
+    @ApiOperation(value = "Crea un plan de ahorro")
     @PostMapping
     public ResponseEntity<WrapperResponse<SavingPlanDTO>> create(@RequestBody SavingPlanDTO savingsPlan){
         SavingPlan newSavingsPlan = savingPlanService.create(converter2.convertDtotoEntity(savingsPlan));
         return new WrapperResponse<>(true, "success", converter1.convertEntityToDto(newSavingsPlan)).createResponse();
     }
 
+    @ApiOperation(value = "Actualiza un plan de ahorro")
     @PutMapping
     public ResponseEntity<WrapperResponse<SavingPlanDTO>> update(@RequestBody SavingPlanDTO savingsPlan){
         SavingPlan newSavingsPlan = savingPlanService.update(converter2.convertDtotoEntity(savingsPlan));
         return new WrapperResponse<>(true, "success", converter1.convertEntityToDto(newSavingsPlan)).createResponse();
     }
 
+    @ApiOperation(value = "Elimina un plan de ahorrro basado en su id")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable(name="id") Long id){
         savingPlanService.delete(id);

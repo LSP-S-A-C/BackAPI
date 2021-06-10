@@ -48,3 +48,16 @@ public class SavingPlan {
     @OneToMany(mappedBy = "savingplan")
     private List<SavesGoal> savesgoals;
 }
+
+/*
+{
+    "currency": "PEN",
+    "currentMoney": 2000,
+    "currentSaves": 900,
+    "savesPercent": 10,
+    "savesgoals": [
+   
+    ],
+    "userId": "1"
+}
+*/

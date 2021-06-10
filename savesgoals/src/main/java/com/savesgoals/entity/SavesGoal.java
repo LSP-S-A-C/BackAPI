@@ -8,9 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -42,3 +40,13 @@ public class SavesGoal {
     @ManyToOne(fetch = FetchType.LAZY)
     private SavingPlan savingplan;
 }
+/*
+{
+    "amountGoal": 800,
+    "description": "piano barato",
+    "pathImage": "ASD12ue93209ajsdlkasda",
+    "savingplan": {
+      "id": 1
+    }
+}
+*/
