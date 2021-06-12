@@ -9,6 +9,7 @@ import com.userservice.exceptions.GeneralServiceException;
 import com.userservice.exceptions.NoDataFoundException;
 import com.userservice.exceptions.ValidateServiceException;
 import com.userservice.repository.UserRepository;
+import com.userservice.utils.PublicEnums;
 import com.userservice.validators.UserValidator;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,11 +40,11 @@ public class UserService  {
             UserValidator.validate(user);
             User existUserEmail = userRepository.findByEmail(user.getEmail()).orElse(null);
             if (existUserEmail != null) {
-                throw new ValidateServiceException("El email ya existe");
+                throw new ValidateServiceException(PublicEnums.ExceptionMessagesUser.EMAIL_ALREADY_EXISTS);
             }
             User existUserPhone = userRepository.findByPhone(user.getPhone()).orElse(null);
             if (existUserPhone != null) {
-                throw new ValidateServiceException("El numero celular ya existe");
+                throw new ValidateServiceException(PublicEnums.ExceptionMessagesUser.PHONE_ALREADY_EXISTS);
             }
             String encoder = passwordEncoder.encode(user.getPassword());
 			user.setPassword(encoder);
@@ -56,10 +57,10 @@ public class UserService  {
     }
     public LoginResponse login(LoginRequest request) {
 		try {
-			User user = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new ValidateServiceException("Email o password incorrecto"));
+			User user = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new ValidateServiceException(PublicEnums.ExceptionMessagesUser.EMAIL_OR_PASSWORD_INVALID));
 
 			if (!passwordEncoder.matches(request.getPassword(), user.getPassword()))
-				throw new ValidateServiceException("Email o password incorrectos");
+				throw new ValidateServiceException(PublicEnums.ExceptionMessagesUser.EMAIL_OR_PASSWORD_INVALID);
 
 			String token = createToken(user);
 

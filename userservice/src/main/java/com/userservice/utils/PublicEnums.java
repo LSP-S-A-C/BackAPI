@@ -6,6 +6,7 @@ public class PublicEnums {
     }
 
     public enum ExceptionMessagesUser{
+        //Validator
         USER_REQUIRED("El usuario es requerido"),
         NAME_REQUIRED("El nombre es requerido"),
         NAME_TOO_LONG("El nombre es muy largo (max 20 caracteres)"),
@@ -16,7 +17,12 @@ public class PublicEnums {
         EMAIL_REQUIRED("El email es requerido"),
         EMAIL_INVALID("El email no es válido"),
         PHONE_REQUIRED("El numero de celular es requerido"),
-        PHONE_INVALID("El numero de celular no es válido");
+        PHONE_INVALID("El numero de celular no es válido"),
+
+        //Service
+        EMAIL_ALREADY_EXISTS("El email ya existe"),
+        PHONE_ALREADY_EXISTS("El numero celular ya existe"),
+        EMAIL_OR_PASSWORD_INVALID("Email o password incorrecto");
 
         private String value;
 
