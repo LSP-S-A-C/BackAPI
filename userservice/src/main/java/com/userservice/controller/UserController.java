@@ -8,6 +8,7 @@ import com.userservice.entity.User;
 import com.userservice.service.UserService;
 import com.userservice.utils.WrapperResponse;
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,21 +28,23 @@ public class UserController {
     @Autowired
     UserConverter userConverter;
 
-    @GetMapping("/lmao")
-    public String lmao() {
-        return "lol";
-    }
     @PostMapping("/signup")
+    @ApiOperation("Recibe un request de signup y el usuario creado si la creación del usuario fue realizada con éxito")
     public ResponseEntity<WrapperResponse<User>> signup(@RequestBody SignupRequest request){
         User user = userService.register(userConverter.signup(request));
         return new WrapperResponse<>(true, "success", user).createResponse();
     }
+
     @PostMapping("/login")
+    @ApiOperation("Recibe un request de login y retorna el token de sesión si los datos brindados son correctos, " +
+                  "de lo contrario, retorna un error")
     public ResponseEntity<WrapperResponse<LoginResponse>> login(@RequestBody LoginRequest request){
         LoginResponse response = userService.login(request);
         return new WrapperResponse<>(true, "success", response).createResponse();
     }
+
     @GetMapping("/{id}")
+    @ApiOperation("Retorna el usuario con el ID brindado")
     public ResponseEntity<WrapperResponse<User>> findById(@PathVariable(name="id") Long id){
         User user = userService.findbyID(id).get();
         return new WrapperResponse<>(true, "success", user).createResponse();
