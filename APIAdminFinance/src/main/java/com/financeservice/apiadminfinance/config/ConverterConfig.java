@@ -1,24 +1,43 @@
 package com.financeservice.apiadminfinance.config;
-import com.financeservice.apiadminfinance.converters.CashFlowConverter;
-import com.financeservice.apiadminfinance.converters.CategoryConverter;
-import com.financeservice.apiadminfinance.converters.SavingSheetsConverter;
 
+import com.financeservice.apiadminfinance.converters.*;
+import lombok.Getter;
+import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-@Configuration
-public class ConverterConfig {
-    @Bean
-    public SavingSheetsConverter getSavingSheetsConverter(){
-        return new SavingSheetsConverter();
-    }
-    @Bean
-    public CategoryConverter getCategoryConverter(){
-        return new CategoryConverter();
-    }
+import org.springframework.context.annotation.PropertySource;
 
+@Getter
+@Configuration
+@PropertySource({"classpath:application.properties"})
+public class ConverterConfig {
+    /*@Bean
+    public SavingSheetsDtoToEntityConverter getSavingSheetsDtoToEntityConverter(){
+        return new SavingSheetsDtoToEntityConverter();
+    }
     @Bean
-    public CashFlowConverter getCashFlowConverter(){
-        return new CashFlowConverter();
+    public SavingSheetsEntityToDtoConverter getSavingSheetsEntityToDtoConverter(){
+        return new SavingSheetsEntityToDtoConverter();
+    }
+    @Bean
+    public CategoryEntityToDtoConverter getCategoryEntityToDtoConverter(){
+        return new CategoryEntityToDtoConverter();
+    }
+    @Bean
+    public CategoryDtoToEntityConverter getCategoryDtoToEntityConverter(){
+        return new CategoryDtoToEntityConverter();
+    }
+    @Bean
+    public CashFlowDtoToEntityConverter getCashFlowDtoToEntityConverter(){
+        return new CashFlowDtoToEntityConverter();
+    }
+    @Bean
+    public CashFlowEntityToDtoConverter getCashFlowEntityToDtoConverter(){
+        return new CashFlowEntityToDtoConverter();
+    }*/
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
     }
 
 }

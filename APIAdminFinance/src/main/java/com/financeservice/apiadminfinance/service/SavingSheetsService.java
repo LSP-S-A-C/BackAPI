@@ -1,12 +1,16 @@
 package com.financeservice.apiadminfinance.service;
 
 import com.financeservice.apiadminfinance.entity.SavingSheets;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface SavingSheetsService {
-    SavingSheets findById(Long savingSheetId);
-    void delete(Long savingSheetId);
-    List<SavingSheets> findAll();
-    SavingSheets save(SavingSheets savingSheets);
+    SavingSheets create(SavingSheets savingSheets);
+
+    SavingSheets update(SavingSheets savingSheets);
+    void delete(Long id);
+    Optional<SavingSheets> listById(Long id);
+    List<SavingSheets> list(Pageable page);
 }

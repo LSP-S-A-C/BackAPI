@@ -1,12 +1,17 @@
 package com.financeservice.apiadminfinance.service;
 
+import com.financeservice.apiadminfinance.entity.CashFlow;
 import com.financeservice.apiadminfinance.entity.Category;
+import org.springframework.data.domain.Pageable;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public interface CategoryService {
-    Category findById(Long categoryId);
-    void delete(Long categoryId) ;
-    List<Category> findAll();
-    Category save(Category categoryId);
+    Category create(Category category);
+    public Category update(Category category);
+    void delete(Long id);
+    Optional<Category> listById(Long id);
+    List<Category> list(Pageable page);
 }

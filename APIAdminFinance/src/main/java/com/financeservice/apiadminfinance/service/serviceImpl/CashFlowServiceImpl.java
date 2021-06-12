@@ -10,10 +10,12 @@ import com.financeservice.apiadminfinance.service.CashFlowService;
 import com.financeservice.apiadminfinance.validators.CashFlowValidator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -22,80 +24,24 @@ public class CashFlowServiceImpl implements CashFlowService {
     @Autowired
     private CashFlowRepository cashFlowRepository;
 
-    public CashFlow findById(Long cashFlowId){
-        try {
-            log.debug("findById => " + cashFlowId);
-            CashFlow cashFlow = cashFlowRepository.findById(cashFlowId)
-                    .orElseThrow(() -> new NoDataFoundException("No existe el flujo de efectivo"));
-            return cashFlow;
-        } catch(ValidateServiceException | NoDataFoundException e) {
-            log.info(e.getMessage(), e);
-            throw e;
-        }catch (Exception e) {
-            log.error(e.getMessage(), e);
-            throw new GeneralServiceException(e.getMessage(), e);
-        }
+    public CashFlow create(CashFlow cashFlow) {
+        return cashFlowRepository.save(cashFlow);
     }
 
-    @Transactional
-    public void delete(Long cashFlowId) {
-        try {
-            CashFlow cashFlow = cashFlowRepository.findById(cashFlowId)
-                    .orElseThrow(() -> new NoDataFoundException("No existe el flujo de efectivo"));
-            cashFlowRepository.delete(cashFlow);
-        } catch (ValidateServiceException | NoDataFoundException e) {
-            log.info(e.getMessage(), e);
-            throw e;
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            throw new GeneralServiceException(e.getMessage(), e);
-        }
+    public CashFlow update(CashFlow cashFlow) {
+        return cashFlowRepository.save(cashFlow);
     }
 
-    public List<CashFlow> findAll(){
-        try {
-            List<CashFlow> cashFlows = cashFlowRepository.findAll();
-            return cashFlows;
-        } catch (ValidateServiceException | NoDataFoundException e) {
-            log.info(e.getMessage(), e);
-            throw e;
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            throw new GeneralServiceException(e.getMessage(), e);
-        }
+    public void delete(Long id) {
+        cashFlowRepository.deleteById(id);
     }
 
-    @Transactional
-    public CashFlow save(CashFlow cashFlow) {
-        try {
-            CashFlowValidator.save(cashFlow);
+    public Optional<CashFlow> listById(Long id) {
+        return cashFlowRepository.findById(id);
+    }
 
-            if(cashFlow.getId() == null) {
-                CashFlow newCashFlow = cashFlowRepository.save(cashFlow);
-                return newCashFlow;
-            }
-
-            CashFlow exitCashFlow = cashFlowRepository.findById(cashFlow.getId())
-                    .orElseThrow(() -> new NoDataFoundException("No existe flujo de efectivo"));
-
-            exitCashFlow.setCashFlowName(cashFlow.getCashFlowName());
-            exitCashFlow.setCategory(cashFlow.getCategory());
-            exitCashFlow.setAmount(cashFlow.getAmount());
-            exitCashFlow.setColor(cashFlow.getColor());
-            exitCashFlow.setRecurrent(cashFlow.getRecurrent());
-
-
-            cashFlowRepository.save(exitCashFlow);
-
-            return exitCashFlow;
-        } catch (ValidateServiceException | NoDataFoundException e) {
-            log.info(e.getMessage(), e);
-            throw e;
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            throw new GeneralServiceException(e.getMessage(), e);
-        }
-
+    public List<CashFlow> list(Pageable page) {
+        return cashFlowRepository.findAll(page).toList();
     }
 
 }

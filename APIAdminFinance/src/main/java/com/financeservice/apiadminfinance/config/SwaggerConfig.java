@@ -20,7 +20,7 @@ public class SwaggerConfig {
     public Docket apiDocket() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.savesgoals.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.financeservice.apiadminfinance.controllers"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(getApiInfo());
