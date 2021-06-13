@@ -27,8 +27,14 @@ public class SavingSheetsServiceImpl implements SavingSheetsService {
     private SavingSheetsRepository savingSheetsRepository;
 
     public SavingSheets create(SavingSheets savingSheets) {
-        savingSheets.setCategories(new ArrayList<Category>());
-        return savingSheetsRepository.save(savingSheets);
+        try {
+            SavingSheetsValidator.validate(savingSheets);
+            return savingSheetsRepository.save(savingSheets);
+        } catch (ValidateServiceException | NoDataFoundException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new GeneralServiceException(e.getMessage(), e);
+        }
     }
 
     public SavingSheets update(SavingSheets savingSheets) {

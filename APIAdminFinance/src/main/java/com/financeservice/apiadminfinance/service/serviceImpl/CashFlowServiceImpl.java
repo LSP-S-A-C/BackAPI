@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +24,14 @@ public class CashFlowServiceImpl implements CashFlowService {
     private CashFlowRepository cashFlowRepository;
 
     public CashFlow create(CashFlow cashFlow) {
-        return cashFlowRepository.save(cashFlow);
+        try {
+            CashFlowValidator.validate(cashFlow);
+            return cashFlowRepository.save(cashFlow);
+        } catch (ValidateServiceException | NoDataFoundException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new GeneralServiceException(e.getMessage(), e);
+        }
     }
 
     public CashFlow update(CashFlow cashFlow) {

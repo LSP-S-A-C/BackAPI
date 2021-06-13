@@ -27,8 +27,14 @@ public class CategoryServiceImpl implements CategoryService {
 
 
     public Category create(Category category) {
-        category.setCashFlows(new ArrayList<CashFlow>());
-        return categoryRepository.save(category);
+        try {
+            CategoryValidator.validate(category);
+            return categoryRepository.save(category);
+        } catch (ValidateServiceException | NoDataFoundException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new GeneralServiceException(e.getMessage(), e);
+        }
     }
 
     public Category update(Category category) {

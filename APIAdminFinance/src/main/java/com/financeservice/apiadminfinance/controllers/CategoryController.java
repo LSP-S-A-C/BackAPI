@@ -28,7 +28,7 @@ public class CategoryController {
     @Autowired
     private CategoryDtoToEntityConverter converter2;
 
-    @ApiOperation(value = " ")
+    @ApiOperation(value = "Lee todas las categorias existentes")
     @GetMapping
     public ResponseEntity<WrapperResponse<List<CategoryDto>>> findAll(
             @RequestParam(name = "pageNumber", required = false, defaultValue = "0") int pageNumber,
@@ -38,28 +38,28 @@ public class CategoryController {
         return new WrapperResponse<>(true, "success", converter1.convertEntityToDto(category)).createResponse();
     }
 
-    @ApiOperation(value = " ")
+    @ApiOperation(value = "Lee una unica categoria utilizando su id ")
     @GetMapping("/{id}")
     public ResponseEntity<WrapperResponse<CategoryDto>> findById(@PathVariable(name="id") Long id){
         Category category = categoryService.listById(id).get();
         return new WrapperResponse<>(true, "success", converter1.convertEntityToDto(category)).createResponse();
     }
 
-    @ApiOperation(value = " ")
+    @ApiOperation(value = "Crea una categoria nueva para la hoja de ahorros")
     @PostMapping
     public ResponseEntity<WrapperResponse<CategoryDto>> create(@RequestBody CategoryDto category){
         Category newCategory = categoryService.create(converter2.convertDtoToEntity(category));
         return new WrapperResponse<>(true, "success", converter1.convertEntityToDto(newCategory)).createResponse();
     }
 
-    @ApiOperation(value = " ")
+    @ApiOperation(value = "Actualiza la categoria utilizando su id")
     @PutMapping
     public ResponseEntity<WrapperResponse<CategoryDto>> update(@RequestBody CategoryDto category){
         Category newCategory = categoryService.update(converter2.convertDtoToEntity(category));
         return new WrapperResponse<>(true, "success", converter1.convertEntityToDto(newCategory)).createResponse();
     }
 
-    @ApiOperation(value = " ")
+    @ApiOperation(value = "Elimina la categoria utilizando su id")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable(name="id") Long id){
         categoryService.delete(id);
