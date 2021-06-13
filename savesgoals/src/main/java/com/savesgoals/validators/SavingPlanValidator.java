@@ -6,7 +6,6 @@ public class SavingPlanValidator {
         if (savingPlan.getCurrentMoney().intValue() < 0) {
             throw new ValidateServiceException("El dinero actual no puede ser negativo");
         }
-        
         if (savingPlan.getCurrentSaves().intValue() < 0) {
             throw new ValidateServiceException("Los ahorros no pueden ser numeros negativos");
         }

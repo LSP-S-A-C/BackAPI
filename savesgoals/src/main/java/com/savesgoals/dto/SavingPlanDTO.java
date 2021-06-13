@@ -1,9 +1,7 @@
 package com.savesgoals.dto;
 import java.math.BigDecimal;
 import java.util.List;
-import com.savesgoals.entity.SavesGoal;
 import com.savesgoals.utils.PublicEnums;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -30,5 +28,5 @@ public class SavingPlanDTO {
     @ApiModelProperty(notes = "Porcentaje que ahorrar el usuario cada vez que obtenga un ingreso", example = "15")
     private Integer savesPercent;
     @ApiModelProperty(notes = "Lista de objetivos a ahorrar del usuario")
-    private List<SavesGoal> savesgoals;
+    private List<SavesGoalsDTO> savesgoals;
 }
