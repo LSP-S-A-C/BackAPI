@@ -1,22 +1,28 @@
 package com.savesgoals.service;
-import com.savesgoals.entity.SavesGoal;
 import com.savesgoals.entity.SavingPlan;
+import com.savesgoals.exceptions.GeneralServiceException;
+import com.savesgoals.exceptions.NoDataFoundException;
+import com.savesgoals.exceptions.ValidateServiceException;
 import com.savesgoals.repository.SavingPlanRepository;
+import com.savesgoals.validators.SavingPlanValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 @Service
 public class SavingPlanService {
     @Autowired
 	private SavingPlanRepository savingsPlanRepository;
-	
 	public SavingPlan create(SavingPlan savingPlan) {
-		savingPlan.setSavesgoals(new ArrayList<SavesGoal>());
-		return savingsPlanRepository.save(savingPlan);
+		try {
+			SavingPlanValidator.validate(savingPlan);
+			return savingsPlanRepository.save(savingPlan);
+        } catch (ValidateServiceException | NoDataFoundException e) {
+			throw e;
+		} catch (Exception e) {
+			throw new GeneralServiceException(e.getMessage(), e);
+		}	
 	}
 
 	public SavingPlan update(SavingPlan savingPlan) {
