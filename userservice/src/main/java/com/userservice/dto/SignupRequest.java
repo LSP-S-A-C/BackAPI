@@ -1,5 +1,6 @@
 package com.userservice.dto;
 import com.userservice.utils.PublicEnums;
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,6 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
+@ApiModel(description = "Esta clase representa una solicitud de registro de usuario")
 public class SignupRequest {
     private String name;
     private String phone;
