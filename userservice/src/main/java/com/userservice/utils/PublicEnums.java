@@ -5,6 +5,10 @@ public class PublicEnums {
         UNEMPLOYED, EMPLOYED
     }
 
+    public enum Currency {
+        PEN, USD, EUR
+    }
+
     public enum ExceptionMessagesUser{
         //Validator
         USER_REQUIRED("El usuario es requerido"),

@@ -1,9 +1,13 @@
 package com.userservice.service;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
+
+import com.userservice.client.SavingsPlanServiceClient;
 import com.userservice.dto.LoginRequest;
 import com.userservice.dto.LoginResponse;
+import com.userservice.dto.SavingPlanDTO;
 import com.userservice.entity.User;
 import com.userservice.exceptions.GeneralServiceException;
 import com.userservice.exceptions.NoDataFoundException;
@@ -30,6 +34,9 @@ public class UserService  {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+	private SavingsPlanServiceClient savingsPlanServiceClient;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -78,6 +85,9 @@ public class UserService  {
     public void delete(Long id) {
         userRepository.deleteById(id);  
     }
+    public List<SavingPlanDTO> getSavingsPlanByUserId(Long id){
+    	return savingsPlanServiceClient.findSavingsPlans(id);
+	}
     public Optional<User> findbyID(Long id) {
         return userRepository.findById(id);
     }
