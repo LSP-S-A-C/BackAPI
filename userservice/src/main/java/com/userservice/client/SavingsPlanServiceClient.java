@@ -29,7 +29,7 @@ public class SavingsPlanServiceClient {
     }
 
     public List<SavingPlanDTO> findSavingsPlans(String userId){
-        WrapperResponse response = restTemplate.getForObject(config.getSavingsPlanServiceUrl(), WrapperResponse.class, userId);
+        WrapperResponse response = restTemplate.getForObject(config.getSavingsPlanServiceUrl() + "/user/{id}", WrapperResponse.class, userId);
 
         List<SavingPlanDTO> list = objectMapper.convertValue(response.getBody(), new TypeReference<List<SavingPlanDTO>>(){});
 
