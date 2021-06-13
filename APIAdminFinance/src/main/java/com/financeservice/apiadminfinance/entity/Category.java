@@ -1,5 +1,6 @@
 package com.financeservice.apiadminfinance.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,9 +27,11 @@ public class Category {
     @Column(name = "PRIORITY")
     private Integer priority;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="savingSheets_id", updatable = false)
     private SavingSheets savingSheets;
+
 
     @OneToMany(mappedBy = "category",
             cascade = CascadeType.ALL, fetch = FetchType.EAGER)

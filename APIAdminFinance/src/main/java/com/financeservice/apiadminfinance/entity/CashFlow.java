@@ -1,5 +1,6 @@
 package com.financeservice.apiadminfinance.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.financeservice.apiadminfinance.utils.PublicEnums;
 import lombok.*;
 
@@ -33,6 +34,7 @@ public class CashFlow {
     @Column(name = "RECURRENT", nullable = false)
     private Boolean recurrent;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="category_id", updatable = false)
     private Category category;
