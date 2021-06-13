@@ -40,5 +40,8 @@ public class SavingPlanService {
 	public List<SavingPlan> list(Pageable page) {
 		return savingsPlanRepository.findAll(page).toList();
 	}
-	
+
+	public List<SavingPlan> listByUserId(String userId, Pageable page) {
+		return savingsPlanRepository.findByUserId(userId, page).toList();
+	}
 }

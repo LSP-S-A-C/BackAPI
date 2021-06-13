@@ -73,5 +73,14 @@ public class SavingPlanController {
         return new WrapperResponse<>(true, "success", null).createResponse();
     }
 
-    // encuentra savingplans por id de usuario
+    @ApiOperation(value = "Lee una lista de planes de ahorro basado en el ID del usuario")
+    @GetMapping("/user/{id}")
+    public ResponseEntity<WrapperResponse<List<SavingPlanDTO>>> findByUserId(
+            @RequestParam(name = "pageNumber", required = false, defaultValue = "0") int pageNumber,
+            @RequestParam(name = "pageSize", required = false, defaultValue = "5") int pageSize,
+            @PathVariable(name="id") String id){
+        Pageable page = PageRequest.of(pageNumber, pageSize);
+        List<SavingPlan> savingPlanList = savingPlanService.listByUserId(id, page);
+        return new WrapperResponse<>(true, "success", converter1.convertEntityToDto(savingPlanList)).createResponse();
+    }
 }
