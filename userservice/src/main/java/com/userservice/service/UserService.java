@@ -85,7 +85,7 @@ public class UserService  {
     public void delete(Long id) {
         userRepository.deleteById(id);  
     }
-    public List<SavingPlanDTO> getSavingsPlanByUserId(Long id){
+    public List<SavingPlanDTO> getSavingsPlanByUserId(String id){
     	return savingsPlanServiceClient.findSavingsPlans(id);
 	}
     public Optional<User> findbyID(Long id) {
