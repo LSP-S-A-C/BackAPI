@@ -6,8 +6,9 @@ public class SavesGoalsValidator {
         if (savesGoal.getAmountGoal().intValue() < 0) {
             throw new ValidateServiceException("El dinero no puede ser negativo");
         }
+        /*
         if (!savesGoal.getAmountGoal().toString().matches("[0-9]+")) {
             throw new ValidateServiceException("El dinero debe ser un numero");
-        }
+        }*/
     }
 }
