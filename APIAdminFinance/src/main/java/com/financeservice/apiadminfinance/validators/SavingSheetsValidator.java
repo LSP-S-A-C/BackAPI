@@ -5,10 +5,10 @@ import com.financeservice.apiadminfinance.entity.SavingSheets;
 import com.financeservice.apiadminfinance.exceptions.ValidateServiceException;
 
 public class SavingSheetsValidator {
-    public static void save(SavingSheets savingSheets){
-        if(savingSheets.getCategories() == null || savingSheets.getCategories().isEmpty()) {
+    public static void validate(SavingSheets savingSheets){
+       /* if(savingSheets.getCategories() == null || savingSheets.getCategories().isEmpty()) {
             throw new ValidateServiceException("Las Categorias son requeridas");
-        }
+        }*/
 
         if(savingSheets.getSavingSheetsName().length() > 30) {
             throw new ValidateServiceException("El nombre es muy largo (max 30)");

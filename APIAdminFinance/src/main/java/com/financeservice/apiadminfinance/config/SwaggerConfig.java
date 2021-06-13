@@ -27,8 +27,8 @@ public class SwaggerConfig {
     }
     private ApiInfo getApiInfo() {
         return new ApiInfo(
-                "Saves Goals API",
-                "Microservicio para admnistrar las metas de ahorro de la aplicación LifeStylePlanner",
+                "Admin Finances API",
+                "Microservicio para admnistrar las finanzas de la aplicación LifeStylePlanner",
                 "1.0",
                 "TODO",
                 new Contact("LifeStylePlanner", "https://elenadanielass.wixsite.com/lsp4", "UPCLSPE4@GMAIL.COM"),

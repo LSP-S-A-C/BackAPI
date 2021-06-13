@@ -6,7 +6,7 @@ import com.financeservice.apiadminfinance.exceptions.ValidateServiceException;
 import java.math.BigDecimal;
 
 public class CashFlowValidator {
-    public static void save(CashFlow cashFlow){
+    public static void validate(CashFlow cashFlow){
         if(cashFlow.getCashFlowName().length() > 30) {
             throw new ValidateServiceException("El nombre es muy largo (max 30)");
         }

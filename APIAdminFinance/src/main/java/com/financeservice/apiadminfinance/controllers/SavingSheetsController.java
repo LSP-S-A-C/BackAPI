@@ -30,7 +30,7 @@ public class SavingSheetsController {
     @Autowired
     private SavingSheetsDtoToEntityConverter converter2;
 
-    @ApiOperation(value = " ")
+    @ApiOperation(value = "Lee todas las hojas de ahorro y las muestra ")
     @GetMapping
     public ResponseEntity<WrapperResponse<List<SavingSheetsDto>>> findAll(
             @RequestParam(name = "pageNumber", required = false, defaultValue = "0") int pageNumber,
@@ -40,28 +40,28 @@ public class SavingSheetsController {
         return new WrapperResponse<>(true, "success", converter1.convertEntityToDto(savingSheets)).createResponse();
     }
 
-    @ApiOperation(value = " ")
+    @ApiOperation(value = "Lee una unica hoja de ahorro identificandola con su id")
     @GetMapping("/{id}")
     public ResponseEntity<WrapperResponse<SavingSheetsDto>> findById(@PathVariable(name="id") Long id){
         SavingSheets savingSheets = savingSheetsService.listById(id).get();
         return new WrapperResponse<>(true, "success", converter1.convertEntityToDto(savingSheets)).createResponse();
     }
 
-    @ApiOperation(value = " ")
+    @ApiOperation(value = "Crea una hoja de ahorros ")
     @PostMapping
     public ResponseEntity<WrapperResponse<SavingSheetsDto>> create(@RequestBody SavingSheetsDto savingSheets){
         SavingSheets newSavingSheets = savingSheetsService.create(converter2.convertDtoToEntity(savingSheets));
         return new WrapperResponse<>(true, "success", converter1.convertEntityToDto(newSavingSheets)).createResponse();
     }
 
-    @ApiOperation(value = " ")
+    @ApiOperation(value = "Actualiza una hoja de ahorros usando su id ")
     @PutMapping
     public ResponseEntity<WrapperResponse<SavingSheetsDto>> update(@RequestBody SavingSheetsDto savingSheets){
         SavingSheets newSavingSheets = savingSheetsService.update(converter2.convertDtoToEntity(savingSheets));
         return new WrapperResponse<>(true, "success", converter1.convertEntityToDto(newSavingSheets)).createResponse();
     }
 
-    @ApiOperation(value = " ")
+    @ApiOperation(value = "Elimina una hoja de ahorros basado en su id ")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable(name="id") Long id){
         savingSheetsService.delete(id);

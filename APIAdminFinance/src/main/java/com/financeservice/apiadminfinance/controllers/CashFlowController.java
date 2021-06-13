@@ -27,7 +27,7 @@ public class CashFlowController {
     @Autowired
     private CashFlowDtoToEntityConverter converter2;
 
-    @ApiOperation(value = " ")
+    @ApiOperation(value = "Lee todos los flujos de efectivo existentes ")
     @GetMapping
     public ResponseEntity<WrapperResponse<List<CashFlowDto>>> findAll(
             @RequestParam(name = "pageNumber", required = false, defaultValue = "0") int pageNumber,
@@ -37,28 +37,28 @@ public class CashFlowController {
         return new WrapperResponse<>(true, "success", converter1.convertEntityToDto(cashFlows)).createResponse();
     }
 
-    @ApiOperation(value = " ")
+    @ApiOperation(value = "Lee un unico flujo de efectivo basado en su id")
     @GetMapping("/{id}")
     public ResponseEntity<WrapperResponse<CashFlowDto>> findById(@PathVariable(name="id") Long id){
         CashFlow cashFlows = cashFlowService.listById(id).get();
         return new WrapperResponse<>(true, "success", converter1.convertEntityToDto(cashFlows)).createResponse();
     }
 
-    @ApiOperation(value = " ")
+    @ApiOperation(value = "Crea un nuevo flujo de efectivo")
     @PostMapping
     public ResponseEntity<WrapperResponse<CashFlowDto>> create(@RequestBody CashFlowDto cashFlow){
         CashFlow newCashFlows = cashFlowService.create(  converter2.convertDtoToEntity(cashFlow));
         return new WrapperResponse<>(true, "success", converter1.convertEntityToDto(newCashFlows)).createResponse();
     }
 
-    @ApiOperation(value = " ")
+    @ApiOperation(value = "Actualiza un flujo de efectivo utilizando su id ")
     @PutMapping
     public ResponseEntity<WrapperResponse<CashFlowDto>> update(@RequestBody CashFlowDto cashFlow){
         CashFlow newCashFlow = cashFlowService.update(converter2.convertDtoToEntity(cashFlow));
         return new WrapperResponse<>(true, "success", converter1.convertEntityToDto(newCashFlow)).createResponse();
     }
 
-    @ApiOperation(value = " ")
+    @ApiOperation(value = "Elimina un flujo de efectivo utilizando su id")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable(name="id") Long id){
         cashFlowService.delete(id);
