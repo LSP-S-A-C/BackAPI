@@ -30,7 +30,7 @@ public class SavingSheetsDto {
     @ApiModelProperty(notes = "Fecha de inicio de la hoja de ahorro", example = "2021-06-12T19:02:16.985Z")
     private LocalDateTime startDate;
 
-    @ApiModelProperty(notes = "Fecha de fin de la hoja de ahorro", example = "2021-06-12T19:02:16.985Z")
+    @ApiModelProperty(notes = "Fecha de fin de la hoja de ahorro", example = "2021-07-12T19:02:16.985Z")
     private LocalDateTime endDate;
 
     @ApiModelProperty(notes = "Nombre de la hoja de ahorros", example = "Decoracion de cocina")
