@@ -6,16 +6,13 @@ import com.financeservice.apiadminfinance.exceptions.ValidateServiceException;
 
 public class SavingSheetsValidator {
     public static void validate(SavingSheets savingSheets){
-       /* if(savingSheets.getCategories() == null || savingSheets.getCategories().isEmpty()) {
-            throw new ValidateServiceException("Las Categorias son requeridas");
-        }*/
 
         if(savingSheets.getSavingSheetsName().length() > 30) {
             throw new ValidateServiceException("El nombre es muy largo (max 30)");
         }
 
         if(savingSheets.getActive() == null) {
-            throw new ValidateServiceException("Especificar estado (activo o inactivo");
+            throw new ValidateServiceException("Especificar estado (activo o inactivo)");
         }
 
         if(savingSheets.getPeriod() < 0) {
