@@ -1,6 +1,6 @@
 package com.savesgoals.dto;
 import java.math.BigDecimal;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -23,5 +23,6 @@ public class SavesGoalsDTO {
     @ApiModelProperty(notes = "Descripción o comentario sobre el objetivo que se planteo el usuario")
     private String description;
     @ApiModelProperty(notes = "Plan de ahorro al que esta relacionado esta meta de ahorro")
+    @JsonIgnoreProperties("savesgoals")
     private SavingPlanDTO savingplan;
 }

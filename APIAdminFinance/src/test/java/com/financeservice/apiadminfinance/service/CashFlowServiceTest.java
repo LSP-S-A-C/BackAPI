@@ -2,7 +2,6 @@ package com.financeservice.apiadminfinance.service;
 
 import com.financeservice.apiadminfinance.converters.SavingSheetsDtoToEntityConverter;
 import com.financeservice.apiadminfinance.entity.CashFlow;
-import com.financeservice.apiadminfinance.entity.Category;
 import com.financeservice.apiadminfinance.exceptions.ValidateServiceException;
 import com.financeservice.apiadminfinance.repository.CategoryRepository;
 import com.financeservice.apiadminfinance.repository.SavingSheetsRepository;
@@ -10,7 +9,6 @@ import com.financeservice.apiadminfinance.service.serviceImpl.CashFlowServiceImp
 import com.financeservice.apiadminfinance.service.serviceImpl.CategoryServiceImpl;
 import com.financeservice.apiadminfinance.service.serviceImpl.SavingSheetsServiceImpl;
 import com.financeservice.apiadminfinance.util.CashFlowServiceDataTestUtils;
-import com.financeservice.apiadminfinance.util.CategoryServiceDataTestUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

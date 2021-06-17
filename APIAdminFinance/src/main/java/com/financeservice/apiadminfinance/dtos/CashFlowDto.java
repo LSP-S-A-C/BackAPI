@@ -1,16 +1,10 @@
 package com.financeservice.apiadminfinance.dtos;
-
 import com.financeservice.apiadminfinance.entity.Category;
 import com.financeservice.apiadminfinance.utils.PublicEnums;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-
 @Getter
 @Setter
 @Builder

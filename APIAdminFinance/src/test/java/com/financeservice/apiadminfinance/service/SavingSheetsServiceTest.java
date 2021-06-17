@@ -1,8 +1,6 @@
 package com.financeservice.apiadminfinance.service;
 
 import com.financeservice.apiadminfinance.converters.SavingSheetsDtoToEntityConverter;
-import com.financeservice.apiadminfinance.converters.SavingSheetsEntityToDtoConverter;
-import com.financeservice.apiadminfinance.entity.Category;
 import com.financeservice.apiadminfinance.entity.SavingSheets;
 import com.financeservice.apiadminfinance.exceptions.ValidateServiceException;
 import com.financeservice.apiadminfinance.repository.CategoryRepository;
@@ -16,8 +14,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @ExtendWith(SpringExtension.class)

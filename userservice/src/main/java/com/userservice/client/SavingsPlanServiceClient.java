@@ -1,5 +1,4 @@
 package com.userservice.client;
-
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.userservice.config.UserServiceConfig;
@@ -10,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-
 import java.util.List;
-
-@Slf4j
 @Component
 public class SavingsPlanServiceClient {
     private RestTemplate restTemplate;

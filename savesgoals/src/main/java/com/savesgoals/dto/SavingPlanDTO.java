@@ -1,6 +1,8 @@
 package com.savesgoals.dto;
 import java.math.BigDecimal;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.savesgoals.utils.PublicEnums;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -28,5 +30,6 @@ public class SavingPlanDTO {
     @ApiModelProperty(notes = "Porcentaje que ahorrar el usuario cada vez que obtenga un ingreso", example = "15")
     private Integer savesPercent;
     @ApiModelProperty(notes = "Lista de objetivos a ahorrar del usuario")
+    @JsonIgnoreProperties("savingplan")
     private List<SavesGoalsDTO> savesgoals;
 }

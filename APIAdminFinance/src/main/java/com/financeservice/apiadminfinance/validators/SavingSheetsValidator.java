@@ -1,9 +1,6 @@
 package com.financeservice.apiadminfinance.validators;
-
-import com.financeservice.apiadminfinance.entity.Category;
 import com.financeservice.apiadminfinance.entity.SavingSheets;
 import com.financeservice.apiadminfinance.exceptions.ValidateServiceException;
-
 public class SavingSheetsValidator {
     public static void validate(SavingSheets savingSheets){
 

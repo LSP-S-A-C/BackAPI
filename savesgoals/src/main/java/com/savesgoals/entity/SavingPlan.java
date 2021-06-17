@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.savesgoals.utils.PublicEnums;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -44,20 +47,8 @@ public class SavingPlan {
     
     @Column(name = "SAVES_PERCENT")
     private Integer savesPercent;
+
     
     @OneToMany(mappedBy = "savingplan")
     private List<SavesGoal> savesgoals;
 }
-
-/*
-{
-    "currency": "PEN",
-    "currentMoney": 2000,
-    "currentSaves": 900,
-    "savesPercent": 10,
-    "savesgoals": [
-   
-    ],
-    "userId": "1"
-}
-*/
