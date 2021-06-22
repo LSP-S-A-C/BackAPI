@@ -65,4 +65,15 @@ public class SavingSheetsController {
         return new WrapperResponse<>(true, "success", null).createResponse();
     }
 
+    @ApiOperation(value = "Lee una lista de hojas de ahorro basado en el ID del plan de ahorro")
+    @GetMapping("/savingplan/{id}")
+    public ResponseEntity<WrapperResponse<List<SavingSheetsDto>>> findThis(
+            @RequestParam(name = "pageNumber", required = false, defaultValue = "0") int pageNumber,
+            @RequestParam(name = "pageSize", required = false, defaultValue = "5") int pageSize,
+            @PathVariable(name="id") String id){
+        Pageable page = PageRequest.of(pageNumber, pageSize);
+        List<SavingSheets> savingSheetList = savingSheetsService.listbySPid(id, page);
+        return new WrapperResponse<>(true, "success", converter1.convertEntityToDto(savingSheetList)).createResponse();
+    }
+
 }

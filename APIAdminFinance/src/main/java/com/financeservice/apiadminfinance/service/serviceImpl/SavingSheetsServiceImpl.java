@@ -46,4 +46,8 @@ public class SavingSheetsServiceImpl implements SavingSheetsService {
     public List<SavingSheets> list(Pageable page) {
         return savingSheetsRepository.findAll(page).toList();
     }
+    
+    public List<SavingSheets> listbySPid(String savingPlanId, Pageable page){
+        return savingSheetsRepository.findByIdSavingPlan(savingPlanId, page).toList();
+    }
 }

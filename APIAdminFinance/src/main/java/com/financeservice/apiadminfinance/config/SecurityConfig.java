@@ -44,6 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/savingSheets/{id}",
                         "/category",
                         "/category/{id}",
+                        "/savingSheets/savingplan/{id}",
                         "/cashFlow",
                         "/cashFlow/{id}",
                         "/v2/api-docs",

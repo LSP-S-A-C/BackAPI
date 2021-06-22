@@ -13,4 +13,5 @@ public interface SavingSheetsService {
     void delete(Long id);
     Optional<SavingSheets> listById(Long id);
     List<SavingSheets> list(Pageable page);
+    List<SavingSheets> listbySPid(String savingPlanId, Pageable page);
 }
