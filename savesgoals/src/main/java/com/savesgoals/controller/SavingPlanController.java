@@ -1,7 +1,7 @@
 package com.savesgoals.controller;
 import java.util.List;
 
-import com.savesgoals.client.SavingSheetsServiceClient;
+import com.savesgoals.client.AdminServiceClient;
 import com.savesgoals.dto.SavingPlanDTO;
 import com.savesgoals.entity.SavingPlan;
 import com.savesgoals.service.SavingPlanService;
@@ -38,7 +38,7 @@ public class SavingPlanController {
     private SavingPlanDtotoEntityConverter converter2;
 
     @Autowired
-    private SavingSheetsServiceClient savingsheetsServiceClient;
+    private AdminServiceClient adminServiceClient;
 
     @ApiOperation(value = "Lee todas los planes de ahorro existentes")
     @GetMapping
@@ -91,6 +91,6 @@ public class SavingPlanController {
     @ApiOperation(value = "Lee todos las hojas de ahorro dado el id de un plan de ahorro")
     @GetMapping("/savingsheet/{id}")
     public WrapperResponse list(@PathVariable(name="id") Long id) {
-        return savingsheetsServiceClient.findSavingSheets(id.toString());
+        return adminServiceClient.findSavingSheets(id.toString());
     }
 }
