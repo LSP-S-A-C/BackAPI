@@ -12,6 +12,9 @@ public class SavesGoalConfig {
     @Value("${userservice.url}")
     private String customerServiceUrl;
 
+    @Value("${savingsplanservice.url}")
+    private String savingsheetServiceUrl;
+
     @Bean
     public ModelMapper modelMapper() {
         return new ModelMapper();
