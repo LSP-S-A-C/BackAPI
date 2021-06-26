@@ -10,7 +10,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 //Dirección para ver swagger
-//http://localhost:8082/api/v1/swagger-ui.html
+//http://localhost:8083/api/v1/swagger-ui.html
 
 @Configuration
 @EnableSwagger2

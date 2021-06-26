@@ -43,10 +43,18 @@ public class SavesGoalsController {
         return new WrapperResponse<>(true, "success", converter1.convertEntityToDto(savesGoals)).createResponse();
     }
 
+    @ApiOperation(value = "Lee todas las metas de ahorro dado el id de un savingplan")
+    @GetMapping("/savingplan/{id}")
+    public ResponseEntity<WrapperResponse<List<SavesGoalsDTO>>> findAllbySavingPlan( @PathVariable(name="id") Long id) {
+        List<SavesGoal> savesGoals = savesGoalService.listbySavingPlan(id, Pageable.unpaged());
+        return new WrapperResponse<>(true, "success", converter1.convertEntityToDto(savesGoals)).createResponse();
+    }
+
     @ApiOperation(value = "Lee una única meta de ahorro según su id")
     @GetMapping("/{id}")
     public ResponseEntity<WrapperResponse<SavesGoalsDTO>> findById(@PathVariable(name="id") Long id){
         SavesGoal savesGoal = savesGoalService.listById(id).get();
+        
         return new WrapperResponse<>(true, "success", converter1.convertEntityToDto(savesGoal)).createResponse();
     }
 

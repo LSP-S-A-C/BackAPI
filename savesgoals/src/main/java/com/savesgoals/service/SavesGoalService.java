@@ -2,6 +2,7 @@ package com.savesgoals.service;
 import java.util.List;
 import java.util.Optional;
 import com.savesgoals.entity.SavesGoal;
+import com.savesgoals.entity.SavingPlan;
 import com.savesgoals.exceptions.GeneralServiceException;
 import com.savesgoals.exceptions.NoDataFoundException;
 import com.savesgoals.exceptions.ValidateServiceException;
@@ -37,5 +38,8 @@ public class SavesGoalService {
 	}
 	public List<SavesGoal> list(Pageable page) {
 		return savesGoalRepository.findAll(page).toList();
+	}
+	public List<SavesGoal> listbySavingPlan(Long id, Pageable page) {
+		return savesGoalRepository.findBySavingplanNative(id, page).toList();
 	}
 }
