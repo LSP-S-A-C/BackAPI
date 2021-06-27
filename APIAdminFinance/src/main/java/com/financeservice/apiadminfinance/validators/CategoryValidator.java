@@ -16,5 +16,9 @@ public class CategoryValidator {
         if(category.getPriority() < 0){
             throw new ValidateServiceException("No pueden haber prioridades negativas");
         }
+
+        if(category.getCategoryName().length()<1){
+            throw new ValidateServiceException("Este dato no puede estar vacío");
+        }
     }
 }

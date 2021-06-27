@@ -22,5 +22,9 @@ public class CashFlowValidator {
         if(cashFlow.getColor() == null) {
             throw new ValidateServiceException("Seleccione un color");
         }
+
+        if(cashFlow.getCashFlowName().length()<1){
+            throw new ValidateServiceException("Este dato no puede estar vacío");
+        }
     }
 }

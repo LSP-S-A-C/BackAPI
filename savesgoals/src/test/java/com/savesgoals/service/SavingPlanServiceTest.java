@@ -69,7 +69,19 @@ public class SavingPlanServiceTest {
         savesGoalDTO.setAmountGoal(AG);
         ValidateServiceException exception = Assertions.assertThrows(ValidateServiceException.class,
         () -> savesGoalService.create(savesGoalDTO));
-        Assertions.assertEquals("El dinero no puede ser negativo", exception.getMessage());   
+        Assertions.assertEquals("El dinero no puede ser negativo", exception.getMessage());
     }
+
+    @Test
+    public void AmountGoalErrorTooMuch(){
+        SavesGoal savesGoalDTO = SavingPlanServiceDataTestUtils.getValidCrateSaveGoal();
+        BigDecimal AG = new BigDecimal(10001);
+        savesGoalDTO.setAmountGoal(AG);
+        ValidateServiceException exception = Assertions.assertThrows(ValidateServiceException.class,
+                () -> savesGoalService.create(savesGoalDTO));
+        Assertions.assertEquals("El dinero no puede exceder de 10 000", exception.getMessage());
+    }
+
+
 
 }
