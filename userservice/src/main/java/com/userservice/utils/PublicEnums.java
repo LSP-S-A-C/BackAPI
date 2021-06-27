@@ -22,6 +22,7 @@ public class PublicEnums {
         EMAIL_INVALID("El email no es válido"),
         PHONE_REQUIRED("El numero de celular es requerido"),
         PHONE_INVALID("El numero de celular no es válido"),
+        EMPLOYEMENTSTATUS_REQUIRED("El estado laboral es requerido"),
 
         //Service
         EMAIL_ALREADY_EXISTS("El email ya existe"),

@@ -72,4 +72,18 @@ public class UserServiceTest {
 
         Assertions.assertEquals(Optional.empty(), optional);
     }
+
+    //
+    @DisplayName("Debería retornar mostrar error en caso de que el estado laboral no se haya elegido")
+    @Test
+    public void shouldThrowErrorWhenEmployementStatusIsNull () {
+        SignupRequest request = UserServiceTestUtils.getValidSignupRequest();
+
+        request.setEmploymentStatus(null);
+
+        ValidateServiceException exception = Assertions.assertThrows(ValidateServiceException.class,
+                () -> userService.register(userConverter.signup(request)));
+
+        Assertions.assertEquals(PublicEnums.ExceptionMessagesUser.EMPLOYEMENTSTATUS_REQUIRED.getValue(),exception.getMessage());
+    }
 }

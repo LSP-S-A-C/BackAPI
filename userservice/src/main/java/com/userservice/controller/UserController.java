@@ -47,13 +47,9 @@ public class UserController {
     @ApiOperation("Retorna el usuario con el ID brindado")
     public ResponseEntity<WrapperResponse<UserDTO>> findById(@PathVariable(name="id") Long id){
         User user = userService.findbyID(id).get();
-
         List<SavingPlanDTO> savingPlans = userService.getSavingsPlanByUserId(id.toString());
-
         UserDTO userDTO = userConverter.userDTO(user);
-
         userDTO.setSavingPlans(savingPlans);
-
         return new WrapperResponse<>(true, "success", userDTO).createResponse();
     }
 }

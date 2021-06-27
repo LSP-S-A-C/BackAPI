@@ -38,6 +38,9 @@ public class UserValidator {
         if (user.getPhone().length() != 9 || !user.getPhone().matches("-?\\d+(\\.\\d+)?")){
             throw new ValidateServiceException(PublicEnums.ExceptionMessagesUser.PHONE_INVALID);
         }
+        if (user.getEmploymentStatus() == null) {
+            throw new ValidateServiceException(PublicEnums.ExceptionMessagesUser.EMPLOYEMENTSTATUS_REQUIRED);
+        }
     }
     
 }
