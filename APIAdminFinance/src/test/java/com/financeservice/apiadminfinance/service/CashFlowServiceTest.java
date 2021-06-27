@@ -57,4 +57,12 @@ public class CashFlowServiceTest {
                 () -> cashFlowService.create(cashFlow));
         Assertions.assertEquals("El monto debe ser mayor a 0", exception.getMessage());
     }
+    @Test
+    public void ExcesiveLengthCashFlowName(){
+        CashFlow cashFlow = CashFlowServiceDataTestUtils.getValidCashFlow();
+        cashFlow.setCashFlowName().length() = 31;
+        ValidateServiceException exception = Assertions.assertThrows(ValidateServiceException.class,
+                () -> cashFlowService.create(cashFlow));
+        Assertions.assertEquals("El nombre es muy largo (max 30)", exception.getMessage());
+    }
 }

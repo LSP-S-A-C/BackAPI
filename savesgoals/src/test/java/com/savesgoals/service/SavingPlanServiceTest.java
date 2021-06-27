@@ -73,7 +73,7 @@ public class SavingPlanServiceTest {
     }
 
     @Test
-    public void AmountGoalErrorTooMuch(){
+    public void ExcesiveAmountGoalError(){
         SavesGoal savesGoalDTO = SavingPlanServiceDataTestUtils.getValidCrateSaveGoal();
         BigDecimal AG = new BigDecimal(10001);
         savesGoalDTO.setAmountGoal(AG);
@@ -81,6 +81,32 @@ public class SavingPlanServiceTest {
                 () -> savesGoalService.create(savesGoalDTO));
         Assertions.assertEquals("El dinero no puede exceder de 10 000", exception.getMessage());
     }
+
+    @Test
+    public void NoDescriptionError(){
+        SavesGoal savesGoalDTO = SavingPlanServiceDataTestUtils.getValidCrateSaveGoal();
+        savesGoalDTO.setDescription().length()=0;
+        ValidateServiceException exception = Assertions.assertThrows(ValidateServiceException.class,
+                () -> savesGoalService.create(savesGoalDTO));
+        Assertions.assertEquals("Este dato no puede estar vacio", exception.getMessage());
+    }
+    @Test
+    public void NoPathImageError(){
+        SavesGoal savesGoalDTO = SavingPlanServiceDataTestUtils.getValidCrateSaveGoal();
+        savesGoalDTO.setPathImage().length()=0;
+        ValidateServiceException exception = Assertions.assertThrows(ValidateServiceException.class,
+                () -> savesGoalService.create(savesGoalDTO));
+        Assertions.assertEquals("Por favor, suba un archivo de imagen", exception.getMessage());
+    }
+    @Test
+    public void ExcesiveLengthDescriptionError(){
+        SavesGoal savesGoalDTO = SavingPlanServiceDataTestUtils.getValidCrateSaveGoal();
+        savesGoalDTO.setDescription().length()=513;
+        ValidateServiceException exception = Assertions.assertThrows(ValidateServiceException.class,
+                () -> savesGoalService.create(savesGoalDTO));
+        Assertions.assertEquals("Máximo 512 caracteres", exception.getMessage());
+    }
+
 
 
 
