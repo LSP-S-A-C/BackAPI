@@ -10,6 +10,9 @@ public class CashFlowValidator {
         if(cashFlow.getCashFlowName().length() > 30) {
             throw new ValidateServiceException("El nombre es muy largo (max 30)");
         }
+        if(cashFlow.getCashFlowName().length() < 3) {
+            throw new ValidateServiceException("El nombre es muy corto (min 3)");
+        }
 
         if(cashFlow.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
             throw new ValidateServiceException("El monto debe ser mayor a 0");

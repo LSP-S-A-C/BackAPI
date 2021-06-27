@@ -4,8 +4,14 @@ import com.financeservice.apiadminfinance.exceptions.ValidateServiceException;
 public class SavingSheetsValidator {
     public static void validate(SavingSheets savingSheets){
 
+        if(savingSheets.getSavingSheetsName().length() < 3) {
+            throw new ValidateServiceException("El nombre es muy corto (min 3)");
+        }
         if(savingSheets.getSavingSheetsName().length() > 30) {
             throw new ValidateServiceException("El nombre es muy largo (max 30)");
+        }
+        if(savingSheets.getSavingSheetsName().length() <1) {
+            throw new ValidateServiceException("Este dato no puede estar vacío");
         }
 
         if(savingSheets.getActive() == null) {

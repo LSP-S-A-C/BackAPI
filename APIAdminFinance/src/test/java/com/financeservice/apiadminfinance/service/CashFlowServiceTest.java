@@ -60,9 +60,25 @@ public class CashFlowServiceTest {
     @Test
     public void ExcesiveLengthCashFlowName(){
         CashFlow cashFlow = CashFlowServiceDataTestUtils.getValidCashFlow();
-        cashFlow.setCashFlowName().length() = 31;
+        cashFlow.setCashFlowName().length("Un piano muy bonito, rosado y pequeño") ;
         ValidateServiceException exception = Assertions.assertThrows(ValidateServiceException.class,
                 () -> cashFlowService.create(cashFlow));
         Assertions.assertEquals("El nombre es muy largo (max 30)", exception.getMessage());
+    }
+    @Test
+    public void ShortLengthCashFlowName(){
+        CashFlow cashFlow = CashFlowServiceDataTestUtils.getValidCashFlow();
+        cashFlow.setCashFlowName().length("Un") ;
+        ValidateServiceException exception = Assertions.assertThrows(ValidateServiceException.class,
+                () -> cashFlowService.create(cashFlow));
+        Assertions.assertEquals("El nombre es muy corto (min 3)", exception.getMessage());
+    }
+    @Test
+    public void NoLengthCashFlowName(){
+        CashFlow cashFlow = CashFlowServiceDataTestUtils.getValidCashFlow();
+        cashFlow.setCashFlowName().length("") ;
+        ValidateServiceException exception = Assertions.assertThrows(ValidateServiceException.class,
+                () -> cashFlowService.create(cashFlow));
+        Assertions.assertEquals("Este dato no puede estar vacío", exception.getMessage());
     }
 }

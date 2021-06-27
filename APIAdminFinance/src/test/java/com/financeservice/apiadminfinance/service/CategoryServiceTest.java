@@ -36,4 +36,28 @@ public class CategoryServiceTest {
                 () -> categoryService.create(category));
         Assertions.assertEquals("No pueden haber prioridades negativas", exception.getMessage());
     }
+    @Test
+    public void ExcesiveLengthCategoryName(){
+        Category category = CategoryServiceDataTestUtils.getValidCategory();
+        category.seCategoryName("Un piano muy bonito, rosado y pequeño");
+        ValidateServiceException exception = Assertions.assertThrows(ValidateServiceException.class,
+                () -> categoryService.create(category));
+        Assertions.assertEquals("El nombre es muy largo (max 30)", exception.getMessage());
+    }
+    @Test
+    public void ShortLengthCategoryName(){
+        Category category = CategoryServiceDataTestUtils.getValidCategory();
+        category.seCategoryName("Un");
+        ValidateServiceException exception = Assertions.assertThrows(ValidateServiceException.class,
+                () -> categoryService.create(category));
+        Assertions.assertEquals("El nombre es muy corto (min 3)", exception.getMessage());
+    }
+    @Test
+    public void NoLengthCategoryName(){
+        Category category = CategoryServiceDataTestUtils.getValidCategory();
+        category.seCategoryName("");
+        ValidateServiceException exception = Assertions.assertThrows(ValidateServiceException.class,
+                () -> categoryService.create(category));
+        Assertions.assertEquals("Este dato no puede estar vacío", exception.getMessage());
+    }
 }

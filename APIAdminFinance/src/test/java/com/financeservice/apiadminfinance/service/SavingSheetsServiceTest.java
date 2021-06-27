@@ -56,4 +56,29 @@ public class SavingSheetsServiceTest {
                 () -> savingSheetsService.create(savingSheets));
         Assertions.assertEquals("Especificar estado (activo o inactivo)", exception.getMessage());
     }
+    @Test
+    public void ExcesiveLengthSavingSheetsName(){
+        SavingSheets savingSheets = SavingSheetsServiceDataTestUtils.getValidSavingSheets();
+        savingSheets.setSavingSheetsName("Un piano muy bonito, rosado y pequeño");
+        ValidateServiceException exception = Assertions.assertThrows(ValidateServiceException.class,
+                () -> savingSheetsService.create(savingSheets));
+        Assertions.assertEquals("El nombre es muy largo (max 30)", exception.getMessage());
+    }
+    @Test
+    public void ShortLengthSavingSheetsName(){
+        SavingSheets savingSheets = SavingSheetsServiceDataTestUtils.getValidSavingSheets();
+        savingSheets.setSavingSheetsName("Un");
+        ValidateServiceException exception = Assertions.assertThrows(ValidateServiceException.class,
+                () -> savingSheetsService.create(savingSheets));
+        Assertions.assertEquals("El nombre es muy corto (min 3)", exception.getMessage());
+    }
+    @Test
+    public void NoLengthSavingSheetsName(){
+        SavingSheets savingSheets = SavingSheetsServiceDataTestUtils.getValidSavingSheets();
+        savingSheets.setSavingSheetsName("");
+        ValidateServiceException exception = Assertions.assertThrows(ValidateServiceException.class,
+                () -> savingSheetsService.create(savingSheets));
+        Assertions.assertEquals("Este dato no puede estar vacío", exception.getMessage());
+    }
+
 }

@@ -12,7 +12,9 @@ public class CategoryValidator {
         if(category.getCategoryName().length() > 30) {
             throw new ValidateServiceException("El nombre es muy largo (max 30)");
         }
-
+        if(category.getCategoryName().length() < 3) {
+            throw new ValidateServiceException("El nombre es muy corto (min 3)");
+        }
         if(category.getPriority() < 0){
             throw new ValidateServiceException("No pueden haber prioridades negativas");
         }

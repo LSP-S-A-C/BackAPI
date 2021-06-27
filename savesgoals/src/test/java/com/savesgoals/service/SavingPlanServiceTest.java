@@ -85,7 +85,7 @@ public class SavingPlanServiceTest {
     @Test
     public void NoDescriptionError(){
         SavesGoal savesGoalDTO = SavingPlanServiceDataTestUtils.getValidCrateSaveGoal();
-        savesGoalDTO.setDescription().length()=0;
+        savesGoalDTO.setDescription("");
         ValidateServiceException exception = Assertions.assertThrows(ValidateServiceException.class,
                 () -> savesGoalService.create(savesGoalDTO));
         Assertions.assertEquals("Este dato no puede estar vacio", exception.getMessage());
@@ -93,7 +93,7 @@ public class SavingPlanServiceTest {
     @Test
     public void NoPathImageError(){
         SavesGoal savesGoalDTO = SavingPlanServiceDataTestUtils.getValidCrateSaveGoal();
-        savesGoalDTO.setPathImage().length()=0;
+        savesGoalDTO.setPathImage("");
         ValidateServiceException exception = Assertions.assertThrows(ValidateServiceException.class,
                 () -> savesGoalService.create(savesGoalDTO));
         Assertions.assertEquals("Por favor, suba un archivo de imagen", exception.getMessage());
@@ -101,7 +101,7 @@ public class SavingPlanServiceTest {
     @Test
     public void ExcesiveLengthDescriptionError(){
         SavesGoal savesGoalDTO = SavingPlanServiceDataTestUtils.getValidCrateSaveGoal();
-        savesGoalDTO.setDescription().length()=513;
+        savesGoalDTO.setDescription().length("El piano que quiero comprar es de la marca Steinway And Sons. La razón es porque quiero empezar a aprender a tocar para poder convertir mis poemas en canciones. El piano que mi en Music Market es perfecto: sofisticado, elegante, un blanco acercandose al crema y no es tan grande. Perfecto para tenerlo en el estudio que planeo formar en base a este sueño frustrado. Con el piano ya podría tocar en las fiestas familiares o sorprender a mis padres con melodías tanto antiguas como nuevas. Eso sí, el piano no puede ser tan grande ni alto ya que soy bajita.");
         ValidateServiceException exception = Assertions.assertThrows(ValidateServiceException.class,
                 () -> savesGoalService.create(savesGoalDTO));
         Assertions.assertEquals("Máximo 512 caracteres", exception.getMessage());
