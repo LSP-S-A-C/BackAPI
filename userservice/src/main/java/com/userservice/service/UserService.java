@@ -86,7 +86,14 @@ public class UserService  {
         userRepository.deleteById(id);  
     }
     public List<SavingPlanDTO> getSavingsPlanByUserId(String id){
-    	return savingsPlanServiceClient.findSavingsPlans(id);
+			 List<SavingPlanDTO> savingPlans = null;
+		try{
+			savingPlans=savingsPlanServiceClient.findSavingsPlans(id);
+		}
+    	catch (Exception E){
+			System.out.println(E.getMessage());
+		}
+		return savingPlans;
 	}
     public Optional<User> findbyID(Long id) {
         return userRepository.findById(id);

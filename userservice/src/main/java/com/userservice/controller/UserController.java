@@ -1,9 +1,7 @@
 package com.userservice.controller;
 
 import com.userservice.converters.UserConverter;
-import com.userservice.dto.LoginRequest;
-import com.userservice.dto.LoginResponse;
-import com.userservice.dto.SignupRequest;
+import com.userservice.dto.*;
 import com.userservice.entity.User;
 import com.userservice.service.UserService;
 import com.userservice.utils.WrapperResponse;
@@ -17,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -45,8 +45,15 @@ public class UserController {
 
     @GetMapping("/{id}")
     @ApiOperation("Retorna el usuario con el ID brindado")
-    public ResponseEntity<WrapperResponse<User>> findById(@PathVariable(name="id") Long id){
+    public ResponseEntity<WrapperResponse<UserDTO>> findById(@PathVariable(name="id") Long id){
         User user = userService.findbyID(id).get();
-        return new WrapperResponse<>(true, "success", user).createResponse();
+
+        List<SavingPlanDTO> savingPlans = userService.getSavingsPlanByUserId(id.toString());
+
+        UserDTO userDTO = userConverter.userDTO(user);
+
+        userDTO.setSavingPlans(savingPlans);
+
+        return new WrapperResponse<>(true, "success", userDTO).createResponse();
     }
 }
